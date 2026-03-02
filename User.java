@@ -1,3 +1,4 @@
+<<<<<<< branchElisha
 public class User {
     /* Attributes for the User superclass */
     private String name; //User's full name
@@ -66,4 +67,8 @@ public class User {
             this.bManagerID = bManagerID;
         }
     }
+=======
+class User{
+    
+>>>>>>> main
 }
