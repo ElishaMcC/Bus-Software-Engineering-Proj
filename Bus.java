@@ -2,7 +2,7 @@ public class Bus {
     //Declaring Attributes
     private int busID; //ID number of Bus
     private String make; //Make of the Bus
-    private String model; //Model of Bus 
+    private String model; //Model of Bus
     private float tankSize; //Size of Tank in gallons
     private float fuelBurnRate; //Fuel burn rate in MPG
     private float cruiseSpeed; // Most effiecent speed
@@ -60,7 +60,7 @@ public class Bus {
         //set/get cruiseSpeed
         public void setCruiseSpeed(float cruiseSpeed){
             this.cruiseSpeed = cruiseSpeed;
-        } 
+        }
         public float getCruiseSpeed(){
             return cruiseSpeed;
         }
