@@ -200,7 +200,7 @@ public class User {
 /* Subclass for bus manager(s) that extends User */
     public class busManager extends User {
         private int bManagerID; //Unique identifier for bus manager
-        // private Bus[] busList; //List of buses managed by bus manager
+        // public Bus[] busList; //List of buses managed by bus manager
         public busManager() {
         }
         public busManager(String name, String username, String password) {
