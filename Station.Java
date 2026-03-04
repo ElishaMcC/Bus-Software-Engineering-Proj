@@ -1,28 +1,35 @@
 class Station{
     //Declare private Attributes
     private String name; //Name Attribute of Station
-    private float longtitude; //Longtitude Attribute for location
+    private float longitude; //Longitude Attribute for location
     private float latitude; //Latitude Attribute for location
 
+    //Declare empty constructor
+    public Station(){
+        name = "";
+        longitude = 0.0;
+        latitude = 0.0;
+    }
+
     //Declare Constructor
-    public Station(String name, float longtitude, float latitude){
+    public Station(String name, float longitude, float latitude){
         this.name = name;
-        this.longtitude = longtitude;
-        this.latitude = latitude; 
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
     /*----------------- Setters and Getters for Attributes -----------------*/
     public void setName(String name){
-        this.name = name; 
-    }    
+        this.name = name;
+    }
     public String getName(){
-        return name; 
+        return name;
     }
 
-    public void setLongtitude(float longtitude){
-        this.longtitude = longtitude; 
+    public void setLongitude(float longitude){
+        this.longitude = longitude;
     }
-    public float getLongtitude(){
-        return longtitude; 
+    public float getLongitude(){
+        return longitude;
     }
 
     public void setLatitude(float latitude){
@@ -34,16 +41,19 @@ class Station{
 
     /*----------------- Station Subclass -----------------*/
     public class BusStation extends Station{
-
+        public BusStation(String name, float longitude, float latitude){
+            super(name, longitude, latitude);
+        }
     }
     public class RefuelStation extends Station{
-        public RefuelStation(String name, float longtitude, float latitude){
-            super(name,longtitude,latitude);
+        public RefuelStation(String name, float longitude, float latitude){
+            super(name, longitude, latitude);
         }
         //Method for refueling a bus.
-        public void refuelBus(){
+        public void refuelBus(Bus bus){
             //Do we want to incorporate the get bus id from the bus class.
-            System.out.println("Bus has been refuel");
+            System.out.println("Bus has been refueled. \n
+            Bus ID: " + bus.getBusID());
         }
     }
 }
