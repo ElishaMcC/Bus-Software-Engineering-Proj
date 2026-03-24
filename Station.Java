@@ -12,6 +12,7 @@ public class Station{
     private String name; //Name Attribute of Station
     private float longitude; //Longitude Attribute for location
     private float latitude; //Latitude Attribute for location
+    private boolean fuelType;
 
     //Declare empty constructor
     public Station(){
@@ -21,10 +22,11 @@ public class Station{
     }
 
     //Declare Constructor
-    public Station(String name, float longitude, float latitude){
+    public Station(String name, float longitude, float latitude, boolean fuelType){
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.fuelType = fuelType;
     }
     /*----------------- Setters and Getters for Attributes -----------------*/
     public void setName(String name){
@@ -48,6 +50,12 @@ public class Station{
         return latitude;
     }
 
+    public void setFuelType(boolean fuelType){
+        this.fuelType = fuelType;
+    }
+    public boolean getFuelType(){
+        return fuelType;
+    }
     /*----------------- Station Subclass -----------------*/
     public class BusStation extends Station{
         public BusStation(String name, float longitude, float latitude){

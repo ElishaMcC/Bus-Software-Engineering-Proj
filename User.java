@@ -135,7 +135,7 @@ public class User {
         //setPassword(passwordInput)
     //}
 
-    /*-------------PLEASE READ --------------
+    /*-------------PLEASE READ --------------//
     Current errors until Error Route class is resolved and we figure out
         how to have the classes communicate properly.*/
     public travelRoute createTravelRoute(){
