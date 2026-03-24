@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class User {
     //Created Arraylist for users
-    List<User> users = new ArrayList<>();
+    public static List<User> users = new ArrayList<>();
     //Imported Scanner as sc
     Scanner sc = new Scanner(System.in); //import scanner
 

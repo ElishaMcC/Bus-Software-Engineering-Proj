@@ -9,7 +9,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,7 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import main.User;
 
 public class LoginScreen extends JPanel{
@@ -89,13 +87,11 @@ public class LoginScreen extends JPanel{
         JButton login = new JButton("Login");
         login.setAlignmentX(Component.CENTER_ALIGNMENT);
         login.addActionListener( e -> {
-            String userIn = user.getText().trim();
-            char[] password = pass.getPassword();
-            String passIn = new String(password);
-            if(userIn.equalsIgnoreCase("Test") 
+            cl.show(container, "home");
+            /* if(userIn.equalsIgnoreCase("Test")
                 && passIn.equalsIgnoreCase("Test")){
             cl.show(container, "home");
-            }
+            }/*
         /*
             for (user i : users){
                 if (i.getUsername == userIn){
@@ -192,6 +188,7 @@ public class LoginScreen extends JPanel{
                     newU.setPassword(new String(password));
                     java.util.Arrays.fill(password, '\0'); // clear it
                     newU.setUsername(usernamef);
+                    User.users.add(newU);
                     JOptionPane.showMessageDialog(signUp,
                         "Your Username: " + usernamef,
                         "Account Created!",
