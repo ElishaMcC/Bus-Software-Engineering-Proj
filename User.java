@@ -6,7 +6,7 @@ public class User {
     //Created Arraylist for users
     List<User> users = new ArrayList<>();
     //Imported Scanner as sc
-    Scanner sc = new Scanner(System.in); //import scanner
+    static Scanner sc = new Scanner(System.in); //import scanner
 
     /* Attributes for the User superclass */
     private String name; //User's full name
@@ -52,14 +52,23 @@ public class User {
 
 /*  ----------------------------User methods---------------------------- */
     public static boolean login(List<User> users, String username, String password) {
-    for (User profile : users) {
-        if (profile.getUsername().equals(username) &&
-            profile.getPassword().equals(password)) {
-            return true;
+        System.out.print("Input Username: ");
+        username = sc.nextLine();
+
+        System.out.println(); //Break for ease of use
+
+        System.out.print("Input Password: ");
+        password = sc.nextLine();
+
+        for (User profile : users) {
+            if (profile.getUsername().equals(username) &&
+                profile.getPassword().equals(password)) {
+                return true;
         }
     }
     return false;
 }
+// LOGIN kinda done. Refine
 // public boolean login(){
         //System print: Input username
         //Scanner equals new Scanner: userInput
@@ -76,13 +85,43 @@ public class User {
     //}
 
     public void logout(){
-        System.out.println("You have been logged out.");
-        //System.exit(0);
+        System.out.println("You have been logged out and the program will end.");
+        System.exit(0);
     }
+    // Log out done
     // public void logout(){
         //System print: You have been logged out.
     //}
 
+    public void updateProfile(){
+        System.out.println("Change Name? (yes/no)");
+        String input = sc.nextLine();
+        
+        if (input.equalsIgnoreCase("yes")){
+            System.out.println("Input your new First and Last name.");
+            String nameInput = sc.nextLine();
+            setName(nameInput);
+
+            //Split first name from last name
+            String[] parts = nameInput.trim().split(" ");
+            if (parts.length >= 2){
+                String firstName = parts[0];
+                String lastName = parts[parts.length - 1];
+
+                //Create new Username
+                String newUsername = lastName + firstName.charAt(0);
+                setUsername(newUsername);
+            }
+            else{System.out.println("Invalid Username input. Username not updated.");}
+
+            //Create new Password
+            System.out.println("Input your new password.");
+            String newPassword = sc.nextLine();
+            setPassword(newPassword);
+        }
+    }
+
+    //Done
     //public void updateProfile(){
         //System print: Change Name?
         //if button equals yes:
@@ -96,6 +135,31 @@ public class User {
         //setPassword(passwordInput)
     //}
 
+    /*-------------PLEASE READ --------------
+    Current errors until Error Route class is resolved and we figure out
+        how to have the classes communicate properly.*/
+    public travelRoute createTravelRoute(){
+        System.out.println("Input your Starting Bus Station.");
+        String startStation = sc.nextLine();
+        for (stationName : Station){
+            if (startStation.equals(station.getName())){
+                continue;
+            }
+            else{
+                System.out.println("Invalid Starting Location. Please try again.");
+                return null;
+            }
+        }
+        System.out.println("What is your Bus Station destination.");
+        String endStation = sc.nextLine();
+        for (endStation : Station){
+            if (endStation.equals(station.getName())){
+                continue;
+            }
+            else {return null;}
+        }
+        return new travelRoute(startStation, endStation);
+    }
     //public travelRoute createTravelRoute(){
         //System print: Input starting location
         //Scanner equals new Scanner: startInput
