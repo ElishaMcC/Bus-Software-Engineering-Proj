@@ -9,7 +9,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -110,6 +109,9 @@ public class HomeScreen extends JPanel{
                 "Invalid Permissions", JOptionPane.WARNING_MESSAGE);
         });
 
+        a5.addActionListener((actionEvent) -> {
+            cl.show(container, "login");
+        });
         //set the default size of the hamburger menu
         hbMenu.setPreferredSize(new Dimension(200, hbMenu.getPreferredSize().height));
 

@@ -9,7 +9,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,7 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import main.User;
 /*The main class associated with the Login Screen. It allows the user to input a username and (hidden)
 password (currently allows login via pressing the button) or create an account, inputting their first and last name,
@@ -198,6 +196,7 @@ public class LoginScreen extends JPanel{
                 JButton submit = new JButton("Create Account");
                 //when clicked, check if the created password matches what is in the confirm password field
                 submit.addActionListener(m ->{
+                    if(!firstName.getText().isEmpty() && !lastName.getText().isEmpty() && makePass.getText().isEmpty()){
                     System.out.println("Click");
                     if(java.util.Arrays.equals(makePass.getPassword(), confPass.getPassword())){
                     String firstNamef = firstName.getText().trim(); //set the final first name for the user
@@ -228,6 +227,9 @@ public class LoginScreen extends JPanel{
                         //if passwords do not match, display warning accordingly
                         JOptionPane.showMessageDialog(signUp, "Password does not match confirmation", "Error", JOptionPane.WARNING_MESSAGE);
                     }
+                }else{
+                    JOptionPane.showMessageDialog(signUp, "All fields must be filled", "Error", JOptionPane.WARNING_MESSAGE);
+                }
                 });
                 
 
