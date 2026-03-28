@@ -2,6 +2,7 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,13 +11,17 @@ import javax.swing.Timer;
 
 import screens.HomeScreen;
 import screens.LoginScreen;
+
+
 /*This class serves as the main executable for our bus planning system.
 It utilizes a CardLayout to switch between tabs/screens that are defined in the screens package (with the
 exception of the disclaimer)
  */
 
 class StartInterface{
-    public static void main(String[] args) {
+    
+    
+    public static void main(String[] args) throws IOException {
         JFrame app = new JFrame("Group 6: Bus Planner"); //Create a new java swing window to start the program
 
         CardLayout layout = new CardLayout(); //creates layout that allows swapping between tabs/screens

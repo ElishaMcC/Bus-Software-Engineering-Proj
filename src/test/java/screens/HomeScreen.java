@@ -9,6 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -57,7 +58,7 @@ public class HomeScreen extends JPanel{
         currentPage.setHorizontalAlignment(JLabel.CENTER);
 
         //creates an image for the hamburger icon (text does not work properly) and sets its proper size
-        ImageIcon hamburger = new ImageIcon("resources/Hamburger_icon.png");
+        ImageIcon hamburger = new ImageIcon(getClass().getClassLoader().getResource(("Hamburger_icon.png")));
         Image scaled = hamburger.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon scaledHamburger = new ImageIcon(scaled);
 

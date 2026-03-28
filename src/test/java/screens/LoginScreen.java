@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -20,18 +21,21 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import main.User;
+
+import permissions.Admin;
+import primary.User;
+
 /*The main class associated with the Login Screen. It allows the user to input a username and (hidden)
 password (currently allows login via pressing the button) or create an account, inputting their first and last name,
 then make and confirm a password, in which a username will be automatically generated (not yet tied to User database)*/
 public class LoginScreen extends JPanel{
     private CardLayout cl;
     private JPanel container;
+    User currentUser = null;//to be used to store the given user
     public LoginScreen(JFrame parent, CardLayout cl, JPanel container){
         this.cl = cl;
         this.container = container;
 
-        User x = null;//to be used to store the given user
 
         //set the screen's layout to gridbag with light grey color
         setLayout(new GridBagLayout());
@@ -95,10 +99,28 @@ public class LoginScreen extends JPanel{
         JButton login = new JButton("Login");
         login.setAlignmentX(Component.CENTER_ALIGNMENT);
         login.addActionListener( e -> {
-            cl.show(container, "home");
+            String userInput = user.getText();
+            String passInput = new String(pass.getPassword());
+            Admin.loadUsers();
+            boolean validUser = false;
+            for(int l = 0; l < Admin.getUsers().size(); l++){
+                        if(Admin.getUsers().get(l).getUsername().equalsIgnoreCase(userInput)){
+                            validUser = true;
+                            if(Admin.getUsers().get(l).getPassword().equals(passInput)){
+                                currentUser = Admin.getUsers().get(l);
+                                cl.show(container, "home");
+                            }else{
+                                JOptionPane.showMessageDialog(parent, "Incorrect Password", "Error", JOptionPane.WARNING_MESSAGE);
+                            }
+                            break;
+                        }
+                    }
+                    if(!validUser){
+                        JOptionPane.showMessageDialog(parent, "Username not Found", "Error", JOptionPane.WARNING_MESSAGE);
+                    }
             /* if(userIn.equalsIgnoreCase("Test")
                 && passIn.equalsIgnoreCase("Test")){
-            cl.show(container, "home");
+            
             }/*
         /*
             for (user i : users){
@@ -196,7 +218,7 @@ public class LoginScreen extends JPanel{
                 JButton submit = new JButton("Create Account");
                 //when clicked, check if the created password matches what is in the confirm password field
                 submit.addActionListener(m ->{
-                    if(!firstName.getText().isEmpty() && !lastName.getText().isEmpty() && makePass.getText().isEmpty()){
+                    if(!firstName.getText().isEmpty() && !lastName.getText().isEmpty() && !makePass.getText().isEmpty()){
                     System.out.println("Click");
                     if(java.util.Arrays.equals(makePass.getPassword(), confPass.getPassword())){
                     String firstNamef = firstName.getText().trim(); //set the final first name for the user
@@ -205,7 +227,7 @@ public class LoginScreen extends JPanel{
                     //create and set custom username for user (tbd: create code if created username matches one in records)
                     String usernamef = lastNamef +
                         (firstNamef.isEmpty() ? "" :
-                        firstNamef.substring(0,1).toUpperCase() + firstNamef.substring(1));
+                        firstNamef.substring(0,1).toUpperCase());
                     User newU = new User();
 
                     //set the new user's full name, username and password
@@ -213,8 +235,16 @@ public class LoginScreen extends JPanel{
                     char[] password = makePass.getPassword();
                     newU.setPassword(new String(password));
                     java.util.Arrays.fill(password, '\0'); // clear password from record
+
+                    //contingent: if two usernames are the same, add a 1 to the end of the username
+                    Admin.loadUsers();
+                    for(int l = 0; l < Admin.getUsers().size(); l++){
+                        if(Admin.getUsers().get(l).getUsername().equalsIgnoreCase(usernamef)){
+                            usernamef = usernamef + 1;
+                        }
+                    }
                     newU.setUsername(usernamef);
-                    User.users.add(newU);
+                    Admin.addUser(newU);
                     
                     //create confirmation box displaying username and close sign up dialog box
                     JOptionPane.showMessageDialog(signUp,
@@ -229,6 +259,9 @@ public class LoginScreen extends JPanel{
                     }
                 }else{
                     JOptionPane.showMessageDialog(signUp, "All fields must be filled", "Error", JOptionPane.WARNING_MESSAGE);
+                    for(int i = 0; i < Admin.getUsers().size(); i++){
+                        System.out.println(Admin.getUsers().get(i).getName());
+                    }
                 }
                 });
                 
