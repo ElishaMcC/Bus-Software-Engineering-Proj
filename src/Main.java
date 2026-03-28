@@ -9,8 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import test.java.screens.HomeScreen;
-import test.java.screens.LoginScreen;
+import screens.HomeScreen;
+import screens.LoginScreen;
 
 
 /*This class serves as the main executable for our bus planning system.
