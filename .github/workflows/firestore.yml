@@ -30,4 +30,4 @@ jobs:
           #run
       - name: RBuild & Run
         run: |
-          mvn clean compile exec:java -Dexec.mainClass="Main"
+          mvn clean compile exec:java -Dexec.mainClass="test.java.Main"
