@@ -1,4 +1,4 @@
-package test.java;
+package test;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Font;
